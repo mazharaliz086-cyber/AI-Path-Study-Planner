@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="Your personal AI, robotics, mathematics and university test preparation planner.">
+  <title>AI Path — Study Planner</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="logo">AI</div><div><strong>AI Path</strong><small>Your study mission</small></div></div>
+    <button id="installBtn" class="install hidden" type="button">Install app</button>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">YOUR ROADMAP STARTS HERE</p>
+      <h1>Build your future in <span>AI + Robotics.</span></h1>
+      <p class="sub">Learn the basics, prepare for university tests, and track your progress one day at a time.</p>
+      <div class="hero-stats">
+        <div><strong id="streakCount">0</strong><small>tasks done</small></div>
+        <div><strong id="progressPercent">0%</strong><small>roadmap complete</small></div>
+        <div><strong id="daysLeft">—</strong><small>test date</small></div>
+      </div>
+      <div class="progress-track"><div id="overallBar" class="progress-fill"></div></div>
+    </section>
+
+    <nav class="tabs" aria-label="Main sections">
+      <button class="tab active" data-tab="today">Today</button>
+      <button class="tab" data-tab="roadmap">Roadmap</button>
+      <button class="tab" data-tab="test">Test prep</button>
+      <button class="tab" data-tab="tracker">My plan</button>
+    </nav>
+
+    <section id="today" class="panel active">
+      <div class="section-heading"><div><p class="eyebrow">SMALL STEPS COUNT</p><h2>Today's mission</h2></div><span class="date-pill" id="todayDate"></span></div>
+      <p class="muted">A realistic starter routine. Tick each task when you finish it.</p>
+      <div id="todayTasks" class="task-list"></div>
+      <div class="tip"><strong>Remember</strong><p>You do not need to be good at maths before you start programming. Learn both slowly, together.</p></div>
+    </section>
+
+    <section id="roadmap" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">LEARN IN ORDER</p><h2>Your learning roadmap</h2></div></div>
+      <p class="muted">These are flexible stages, not strict deadlines. Move forward when you understand the basics.</p>
+      <div id="roadmapList" class="roadmap-list"></div>
+    </section>
+
+    <section id="test" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">ADMISSION GOAL</p><h2>University test prep</h2></div></div>
+      <div class="notice"><strong>Important:</strong> test subjects and weightings vary by university and program. Use each university's latest official admission notice to confirm the syllabus.</div>
+      <label class="field-label" for="uniSelect">Choose a target</label>
+      <select id="uniSelect">
+        <option value="general">General computing entrance test</option>
+        <option value="nust">NUST NET</option>
+        <option value="fast">FAST-NUCES test</option>
+        <option value="comsats">COMSATS test</option>
+        <option value="umt">UMT test / admission requirements</option>
+        <option value="other">Other university</option>
+      </select>
+      <div id="testInfo" class="test-info"></div>
+      <h3 class="subheading">Practice checklist</h3>
+      <div id="testTasks" class="task-list"></div>
+      <h3 class="subheading">Practice log</h3>
+      <div class="practice-form">
+        <label>Subject
+          <select id="practiceSubject">
+            <option>Mathematics</option><option>English</option><option>Analytical reasoning</option><option>Computer science</option><option>Physics</option>
+          </select>
+        </label>
+        <label>Questions attempted <input id="attempted" type="number" min="0" inputmode="numeric" placeholder="e.g. 20"></label>
+        <label>Correct answers <input id="correct" type="number" min="0" inputmode="numeric" placeholder="e.g. 14"></label>
+        <button id="savePractice" class="primary" type="button">Save practice session</button>
+      </div>
+      <div id="practiceSummary" class="practice-summary"></div>
+    </section>
+
+    <section id="tracker" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h2>My plan</h2></div></div>
+      <div class="settings-card">
+        <label class="field-label" for="targetUni">Main university target</label>
+        <input id="targetUni" type="text" placeholder="e.g. NUST, FAST, UMT">
+        <label class="field-label" for="testDate">Expected test date (if known)</label>
+        <input id="testDate" type="date">
+        <label class="field-label" for="dailyMinutes">Study time per day</label>
+        <select id="dailyMinutes"><option value="30">30 minutes</option><option value="60" selected>1 hour</option><option value="90">1.5 hours</option><option value="120">2 hours</option></select>
+        <button id="savePlan" class="primary" type="button">Save my plan</button>
+        <p id="saveMessage" class="success-message" role="status"></p>
+      </div>
+      <div class="settings-card">
+        <h3>Weekly study plan</h3>
+        <div class="week-plan">
+          <div><b>Mon</b><span>Math + Python</span></div><div><b>Tue</b><span>Math + English</span></div>
+          <div><b>Wed</b><span>Python + reasoning</span></div><div><b>Thu</b><span>Math practice</span></div>
+          <div><b>Fri</b><span>English + test questions</span></div><div><b>Sat</b><span>Timed mini-test</span></div>
+          <div><b>Sun</b><span>Review + rest</span></div>
+        </div>
+      </div>
+      <button id="resetBtn" class="danger-ghost" type="button">Reset all progress</button>
+      <p class="tiny muted">Your progress is saved on this device/browser. It does not automatically sync between devices.</p>
+    </section>
+    <footer><span>AI Path • Version 1.0</span><span>Made for steady progress, not perfection.</span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
